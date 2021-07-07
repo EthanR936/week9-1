@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--Author: Ethan R
+email: ethrife@uat.edu
+Wk1 assignment,Assignment: Launching your UAT Space Program HTML Document Tags-->
+<html>
+
+<head>
+    <script src="code.js"></script>
+    <script src="class.js"></script>
+    <script src="dataLoader.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title>
+        Ethan R UATSpace Page
+    </title>
+<script>
+    //creating the varables we need
+    var theTime = new Date();
+    var tempTime = new Date();
+    var time_interval = 5000;
+    var last_iteration = 0;
+    var running = true;
+    var index = 0
+    var timer;
+
+    //get data in the array 
+    var data = getData();
+
+    //function to load and display data
+    function updateDisplay() {
+        theTime = new Date();
+        var timeRed = data[index].time_seconds;
+
+        if(timeRed >= 10){
+            document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+            document.getElementById("data").rows["latitude"].innerHTML = dataRow("latitude", data[index].latitude, " ");
+            document.getElementById("data").rows["longitude"].innerHTML = dataRow("longitude", data[index].longitude, " ");
+            document.getElementById("data").rows["gpsSensor_alt"].innerHTML = dataRow("gpsSensor altitude", data[index].gps_altitude, " ");
+            document.getElementById("data").rows["bmpSensor_alt"].innerHTML = dataRow("bmpSensor altitude", data[index].bmpSensor_altitude, " ");
+            document.getElementById("data").rows["bmpSensor_prs"].innerHTML = dataRow("bmpSensor pressure", data[index].bmpSensor_pressure, " ");
+            document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("bmpSensor tempreture", data[index].bmpSensor_temp, " ");
+            document.getElementById("data").rows["digSensor_temp"].innerHTML = dataRow("digSensor tempreture", data[index].digSensor_temp, " ");
+            document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("cssSensor tempreture", data[index].cssSensor_temp, " ");
+            document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("cssSensor TVOC", data[index].cesSensor_TVOC, " ");
+            document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV, " ");
+            document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX, " ");
+            document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY, " ");
+            document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ, " ");
+            document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magneticX", data[index].magnetX, " ");
+            document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magneticY", data[index].magnetY, " ");
+            document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magneticZ", data[index].magnetZ, " ");
+            document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX, " ");
+            document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY, " ");
+            document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ, " ");
+
+            if(index < 500){
+                index++;
+            }else{
+                index = 0;
+            }
+            console.log("Display: " + theTime.getHours() + ":" + theTime.getMinutes() + ":" + theTime.getSeconds());
+        }
+
+
+
+
+
+    }
+</script>
+</head>
+<script>
+    //line 22 to 32 makes the title of the page including the picture on line 25 
+</script>
+<body>
+    <table>
+        <td><img src="UATspaceLogo (1).jpg"></td>
+        <td>
+            <h1>
+                UAT Space Program
+            </h1>
+        </td>
+    </table>
+    <script>
+        //everything below makes up the data chart specifcally 34 to 67
+    </script>
+    <br>
+    <table id="data" width= "70%" border="2">
+        <col style="width: 35%">
+        <col style="width: 35%">
+        <thead>
+            <tr style="font-family: fantasy;"></tr>
+            <th>Data Type</th>
+            <th>Reading</th>
+        </thead>
+        <tbody>
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gpsSensor_alt"></tr>
+            <tr id="bmpSensor_alt"></tr>
+            <tr id="bmpSensor_prs"></tr>
+            <tr id="bmpSensor_temp"></tr>
+            <tr id="digSensor_temp"></tr>
+            <tr id="cssSensor_temp"></tr>
+            <tr id="cssSensor_eCO2"></tr>
+            <tr id="cssSensor_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="magneticX"></tr>
+            <tr id="magneticY"></tr>
+            <tr id="magneticZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+        </tbody>
+    </table>
+    <br>
+    the current time is:<div id="time"></div>
+
+
+
+    <br>
+    <script>
+        //click the start button to activate the timer for the countdown and press stop to stop it
+    </script>
+    <button id="startButton" onclick="start();" class="button">Start</button>
+    <button id="stopButton" onclick="stop();" class="button">Stop</button>
+    <br>
+    <br>
+    <script>
+        //line 52 53 are the result of the die 54 is the tottal of the die and line 55 is the result wether you win lose or neither
+    </script>
+    <div id="die1Res">Die 1 status</div>
+    <div id="die2Res">Die 2 status</div>
+    <div id="diecesum">Die sum status</div>
+    <div id="crapstatus">craps game status</div><br>
+    <script>
+       //60 is saying when you press this button you are activating playcrapts the game 
+    </script>
+    <button onclick="playcraps()" class="button">play craps</button>
+    <script>
+    //65 and 66 are for the dand box status and sand box button
+    </script>
+    <br>
+    <br>
+    <button class="button" onclick="playstation();">Play sounds</button>
+    <button class="button" onclick="playBonk();">Play BONK!!</button>
+    <br>
+    <br>
+    <script>
+        var fallLaunch = new Mission(100, 100, 100, "Fiona", 15, "october", 2022, 5);
+        var springLaunch = new Mission(79, 50, 92, "Polarius", 12, "april", 2023, 2);
+    </script>
+    <button class="button" onclick="launchFall();">Launch fall</button>
+    <button class="button" onclick="displayFall();">Display fall</button>
+
+</body>
+
+
+</html>
